@@ -1,5 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Hello from './components/Hello';
+import NumberPicker from './components/NumberPicker';
 
-ReactDOM.render(<Hello name='Nano' />, document.getElementById('app'));
+ReactDOM.render(<NumberPicker value={2} max={5} min={-5}/>, document.getElementById('app'));
