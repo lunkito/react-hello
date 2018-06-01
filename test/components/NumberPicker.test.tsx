@@ -29,4 +29,10 @@ describe('NumberPicker', () => {
     wrapper.find('button.plus').simulate('click');
     expect(wrapper.find('.result').text()).toBe('1');
   });
+  test('Lanzar error cuando el valor inicial > max', () => {
+    expect(() =>  shallow(<NumberPicker value={5} max={2} />)).toThrow();
+  });
+  test('Lanzar error cuando el valor inicial < min', () => {
+    expect(() => shallow(<NumberPicker value={5} min={7} />)).toThrow();
+  });
 });

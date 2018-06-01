@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as styles from './numberPicker.css';
 
 interface NumberPickerState {
   counter: number;
@@ -10,9 +11,29 @@ interface NumberPickProp {
   min?: number;
 }
 
+const numberPickerStyle: React.CSSProperties = {
+  display: 'flex'
+};
+
+const buttonStyle: React.CSSProperties = {
+  background: 'red',
+  width: '40px',
+  height: '40px',
+  color: 'white',
+  border: '1px solid #f33',
+  borderRadius: '50%',
+  margin: '10px',
+  outline: 'none'
+};
+
+const divStyle: React.CSSProperties = {
+  lineHeight: '60px'
+};
+
 export default class NumberPicker extends React.Component<NumberPickProp, NumberPickerState> {
   constructor(props) {
     super(props);
+    this.checkInitialValues(props);
 
     this.state = {
       counter: this.props.value || 0
@@ -22,6 +43,11 @@ export default class NumberPicker extends React.Component<NumberPickProp, Number
     this.decreaseCounter = this.decreaseCounter.bind(this);
   }
 
+  checkInitialValues(props: NumberPickProp) {
+    if (props.value > props.max || props.value < props.min) {
+      throw new Error();
+    }
+  }
   incrementCounter() {
     if (this.props.max === undefined || this.state.counter < this.props.max) {
       this.setState({
@@ -38,10 +64,10 @@ export default class NumberPicker extends React.Component<NumberPickProp, Number
   }
 
   render() {
-    return <div>
-      <button className='plus' onClick={this.incrementCounter}>+</button>
-      <div className='result'>{this.state.counter}</div>
-      <button className='minus' onClick={this.decreaseCounter}>-</button>
+    return <div style={numberPickerStyle} className={styles.container}>
+      <button style={buttonStyle} onClick={this.decreaseCounter}>-</button>
+      <div style={divStyle}>{this.state.counter}</div>
+      <button style={buttonStyle} onClick={this.incrementCounter}>+</button>
     </div>;
   }
 }
