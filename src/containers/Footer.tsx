@@ -9,16 +9,10 @@ export interface FooterProps {
 
 @inject('counterStore')
 @observer
-
-export interface FooterProps {
-  counter: number;
-}
-
 export default class Footer extends React.Component<FooterProps, {}> {
-
   render() {
     return <footer>
-      <div>{this.props.counter}</div>
+      <div>{this.props.counterStore.counter}</div>
     </footer>;
   }
 }
