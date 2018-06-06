@@ -8,24 +8,20 @@ import newMovieControlled from './pages/NewMovieControlled';
 import newMovieUncontrolled from './pages/NewMovieUncontrolled';
 
 // REDUX ---------------------------------------------
-import * as Redux from 'redux';
-import { Provider } from 'react-redux';
-import rootReducer, { AppState } from './reducers';
-import { decrementCounter, incrementCounter } from './actions';
-
-const store: Redux.Store<AppState> = Redux.createStore(rootReducer);
+import { Provider } from 'mobx-react';
+import stores from './stores';
 
 function increment() {
-  store.dispatch(incrementCounter(1));
+  stores.counterStore.increment(1);
 }
 
 function decrement() {
-  store.dispatch(decrementCounter(1));
+  stores.counterStore.decrement(1);
 }
 
 export default class App extends React.Component {
   render() {
-    return <Provider store={store}>
+    return <Provider {...stores}>
       <Router>
         <div>
           <Header/>
@@ -34,9 +30,6 @@ export default class App extends React.Component {
           <Route exact path='/' component={Home}/>
           <Route path='/home' component={Home}/>
           <Route path='/about' component={About}/>
-          <Route path='/movies' component={Movies}/>
-          <Route path='/newMovieControlled' component={newMovieControlled}/>
-          <Route path='/newMovieUncontrolled' component={newMovieUncontrolled}/>
         </div>
       </Router>
     </Provider>;
