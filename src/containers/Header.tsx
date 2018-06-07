@@ -34,6 +34,7 @@ export default class Header extends React.Component<HeaderProps, {}> {
       <li><button onClick={this.decrement}>-</button></li>
       <li><Link to='/home'>Home</Link></li>
       <li><Link to='/about'>About</Link></li>
+      <li><Link to='/movies'>Movies</Link></li>
     </ul>;
   }
 }

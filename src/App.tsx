@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './containers/Header';
 import Home from './pages/Home';
 import About from './pages/About';
+import Movies from './pages/Movies';
 import Footer from './containers/Footer';
 
 // MOBX ---------------------------------------------
@@ -28,6 +29,7 @@ export default class App extends React.Component {
           <Route exact path='/' component={Home}/>
           <Route path='/home' component={Home}/>
           <Route path='/about' component={About}/>
+          <Route path='/movies' component={Movies}/>
           <Footer />
         </div>
       </Router>
